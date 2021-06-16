@@ -18,7 +18,7 @@
 [![Issues Closed](https://img.shields.io/github/issues-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues?q=is:closed)
 [![PR Open](https://img.shields.io/github/issues-pr/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls)
 [![PR Closed](https://img.shields.io/github/issues-pr-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls?q=is:closed)
-![Repo Size](https://img.shields.io/github/repo-size/Javes786/javes-2.0?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/JAVES-5/JAVES-5?style=flat-square)
 
 <br>
 
@@ -44,7 +44,7 @@
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/JAVES-5/JAVES-5)
 
 # Requirements 
-* Python 3.8 or Higher
+* Python 3.9 or Higher
 * Telegram [API Keys](https://my.telegram.org/apps)
 * String [Generate from here](https://repl.it/@Javes786/Javes-20-String-session#main.py)
 
@@ -66,7 +66,7 @@ Simply copy these commands and paste in Termux:
 apt-get upgrade -y
 pkg upgrade -y
 pkg install python wget -y
-wget https://raw.githubusercontent.com/Javes786/javes-2.0/main/telesetup.py
+wget https://raw.githubusercontent.com/JAVES-5/JAVES-5/main/telesetup.py
 pip install telethon
 python telesetup.py
 ```
@@ -83,7 +83,7 @@ python telesetup.py
     
     [-] API_HASH :   You can get this value from https://my.telegram.org
     
-[+] The Javes-2.0 User Bot will not work without setting the mandatory vars.
+[+] The Javes-5 User Bot will not work without setting the mandatory vars.
 ```
 
 
