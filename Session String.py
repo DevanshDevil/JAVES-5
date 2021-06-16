@@ -7,7 +7,7 @@ print("an online StringSession generator")
 
 
 print("t ==> Telethon (docs.telethon.dev)")
-print("Telethon UserBot ==> https://github.com/Javes786/javes-2.0")
+print("Telethon UserBot ==> https://github.com/JAVES-5/JAVES-5")
 
 
 def Javes2():
