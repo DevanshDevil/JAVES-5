@@ -1,12 +1,12 @@
-<h2 align="center"><b>OwNeR <a href="https://telegram.dog/criminaL786">『 ツᴅɪᴄͥᴛᴀᴛᴏͣʀͫ乛ᴀᴍᴀᴀɴ々』</a></b></h2>
+<h2 align="center"><b>OwNeR <a href="https://telegram.dog/MONSTERX2">『 ツDEVENSHツ 』</a></b></h2>
 <br>
 <p align="center">
-   <a href="https://github.com/Javes786/javes-2.0"><img src="https://telegra.ph/file/f3b4a7929e333520808ab.jpg" alt="JAVES 2.0" width=400px></a>
+   <a href="https://github.com/JAVES-5/JAVES-5"><img src="https://telegra.ph/file/169b98cc836367751dcb1.jpg" alt="JAVES 5" width=400px></a>
    <br>
    <br>
 </p>
-<h1>JAVES 2.0</h1>
-<b>Javes 2.0 is a telgram userbot that running in python3 + Telethon Born From Javes.</b>
+<h1>JAVES 5</h1>
+<b>Javes 5 is a telgram userbot that running in python3 + Telethon Born From Javes.</b>
 <br>
 <br>
 
@@ -41,7 +41,7 @@
 
 # Click On This To Deploy
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Javes786/javes-2.0)
+[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/JAVES-5/JAVES-5)
 
 # Requirements 
 * Python 3.8 or Higher
