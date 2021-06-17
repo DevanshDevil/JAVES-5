@@ -10,14 +10,14 @@
 <br>
 <br>
 
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/Javes786/javes-2.0)
-[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/Javes786/javes-2.0#copyright--license)
-[![Stars](https://img.shields.io/github/stars/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/stargazers)
-[![Forks](https://img.shields.io/github/forks/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/network/members)
-[![Issues Open](https://img.shields.io/github/issues/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues)
-[![Issues Closed](https://img.shields.io/github/issues-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/issues?q=is:closed)
-[![PR Open](https://img.shields.io/github/issues-pr/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls)
-[![PR Closed](https://img.shields.io/github/issues-pr-closed/Javes786/javes-2.0?&style=flat-square)]( https://github.com/Javes786/javes-2.0/pulls?q=is:closed)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)]( https://github.com/JAVES-5/JAVES-5)
+[![AGPLv3 license](https://img.shields.io/badge/License-AGPL%20v3-green.svg)]( https://github.com/JAVES-5/JAVES-5#copyright--license)
+[![Stars](https://img.shields.io/github/stars/JAVES-5/JAVES-5?&style=flat-square)]( https://github.com/JAVES-5/JAVES-5/stargazers)
+[![Forks](https://img.shields.io/github/forks/JAVES-5/JAVES-5?&style=flat-square)]( https://github.com/JAVES-5/JAVES-5/network/members)
+[![Issues Open](https://img.shields.io/github/issues/JAVES-5/JAVES-5?&style=flat-square)]( https://github.com/JAVES-5/JAVES-5/issues)
+[![Issues Closed](https://img.shields.io/github/issues-closed/JAVES-5/JAVES-5?&style=flat-square)]( https://github.com/JAVES-5/JAVES-5/issues?q=is:closed)
+[![PR Open](https://img.shields.io/github/issues-pr/JAVES-5/JAVES-5?&style=flat-square)]( https://github.com/JAVES-5/JAVES-5/pulls)
+[![PR Closed](https://img.shields.io/github/issues-pr-closed/JAVES-5/JAVES-5?&style=flat-square)]( https://github.com/jAVES-5/JAVES-5/pulls?q=is:closed)
 ![Repo Size](https://img.shields.io/github/repo-size/JAVES-5/JAVES-5?style=flat-square)
 
 <br>
