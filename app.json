@@ -9,9 +9,9 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://t.me/javes_support",
+  "repository": "https://t.me/JAVES_5_SUPPORTER",
   "website": "https://t.me/j2plugins",
-  "success_url": "https://t.me/CriMiNaL786",
+  "success_url": "https://t.me/MONSTERX2",
   "stack": "container",
   "env": {
     "TELEGRAM_API_KEY": {
@@ -173,7 +173,7 @@
       },
     "JAVES_NAME": {
       "description": "You can edit bot's name",
-      "value": "Javes 2.0",
+      "value": "JAVES-5",
       "required": false
     
     },
