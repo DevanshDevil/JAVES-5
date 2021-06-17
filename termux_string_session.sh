@@ -23,6 +23,6 @@ apt-get update
 apt-get upgrade -y
 pkg upgrade -y
 pkg install python wget -y
-wget https://raw.githubusercontent.com/Javes786/javes-2.0/main/telesetup.py
+wget https://raw.githubusercontent.com/JAVES-5/JAVES-5/main/telesetup.py
 pip install telethon
 python telesetup.py
