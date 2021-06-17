@@ -1,4 +1,4 @@
-<h2 align="center"><b>OwNeR <a href="https://telegram.dog/MONSTERX2">『 ツDEVENSHツ 』</a></b></h2>
+<h2 align="center"><b>OWNER <a href="https://telegram.dog/MONSTERX2">『 ツDEVENSHツ 』</a></b></h2>
 <br>
 <p align="center">
    <a href="https://github.com/JAVES-5/JAVES-5"><img src="https://telegra.ph/file/169b98cc836367751dcb1.jpg" alt="JAVES 5" width=400px></a>
