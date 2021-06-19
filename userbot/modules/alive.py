@@ -4,7 +4,7 @@ from telethon import version
 from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME, YOUR_SHORT_NAME)
 from userbot.events import javes05, rekcah05 
 import os
-shivam = os.environ.get("ALIVE_PIC","https://telegra.ph/file/169b98cc836367751dcb1.jpg")
+shivam = os.environ.get("ALIVE_PIC","https://telegra.ph/file/a1c39c87eeeb2a63ffa62.jpg")
 
 import asyncio
 from telethon import events
