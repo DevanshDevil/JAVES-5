@@ -68,30 +68,31 @@ from userbot import CMD_HELP, ALIVE_NAME, PM_MESSAGE, JAVES_NAME, JAVES_MSG, ORI
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
 ACC_LYDIA = {}
 async def progress(current, total, event, start, type_of_ps, file_name=None):
-    """Generic progress_callback for uploads and downloads."""
-    now = time.time()
-    diff = now - start
-    if round(diff % 10.00) == 0 or current == total:
-        percentage = current * 100 / total
-        speed = current / diff
-        elapsed_time = round(diff) * 1000
-        time_to_completion = round((total - current) / speed) * 1000
-        estimated_total_time = elapsed_time + time_to_completion
-        progress_str = "[{0}{1}] {2}%\n".format(
-            ''.join(["-" for i in range(math.floor(percentage / 10))]),
-            ''.join(["-" for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2))
-        tmp = progress_str + \
-            "{0} of {1}\nETA: {2}".format(
-                humanbytes(current),
-                humanbytes(total),
-                time_formatter(estimated_total_time)
-            )
-        if file_name:
-            await event.edit("{}\nFile Name: `{}`\n{}".format(
-                type_of_ps, file_name, tmp))
-        else:
-            await event.edit("{}\n{}".format(type_of_ps, tmp))
+  """Generic progress_callback for uploads and downloads."""
+  now = time.time()
+  diff = now - start
+  if round(diff % 10.00) == 0 or current == total:
+    percentage = current * 100 / total
+    speed = current / diff
+    elapsed_time = round(diff) * 1000
+    time_to_completion = round((total - current) / speed) * 1000
+    estimated_total_time = elapsed_time + time_to_completion
+    progress_str = "[{0}{1}] {2}%\n".format(
+        ''.join("-" for i in range(math.floor(percentage / 10))),
+        ''.join("-" for i in range(10 - math.floor(percentage / 10))),
+        round(percentage, 2),
+    )
+    tmp = progress_str + \
+        "{0} of {1}\nETA: {2}".format(
+            humanbytes(current),
+            humanbytes(total),
+            time_formatter(estimated_total_time)
+        )
+    if file_name:
+        await event.edit("{}\nFile Name: `{}`\n{}".format(
+            type_of_ps, file_name, tmp))
+    else:
+        await event.edit("{}\n{}".format(type_of_ps, tmp))
 
 
 def humanbytes(size):
@@ -247,19 +248,17 @@ async def remcf(event):
 
 @javes05(incoming=True, disable_errors=True, disable_edited=True)
 async def user(event):
-    user_text = event.text    
-    try:
-        session = ACC_LYDIA[event.chat_id & event.from_id]
-        msg = event.text
-        async with event.client.action(event.chat_id, "typing"):
-            text_rep = session.think_thought(msg)
-            wait_time = 0
-            for i in range(len(text_rep)):
-                wait_time = wait_time + 0.1
-            await asyncio.sleep(wait_time)
-            await event.reply(text_rep)
-    except (KeyError, TypeError):
-        return
+  user_text = event.text
+  try:
+    session = ACC_LYDIA[event.chat_id & event.from_id]
+    msg = event.text
+    async with event.client.action(event.chat_id, "typing"):
+      text_rep = session.think_thought(msg)
+      wait_time = sum(0.1 for _ in range(len(text_rep)))
+      await asyncio.sleep(wait_time)
+      await event.reply(text_rep)
+  except (KeyError, TypeError):
+      return
 
 
 @javes05(outgoing=True, pattern="^\!rbg(?: |$)(.*)")
@@ -317,38 +316,33 @@ async def kbg(remob):
 # this method will call the API, and return in the appropriate format
 # with the name provided.
 async def ReTrieveFile(input_file_name):
-    headers = {
-        "X-API-Key": REM_BG_API_KEY,
-    }
-    files = {
-        "image_file": (input_file_name, open(input_file_name, "rb")),
-    }
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
+  headers = {
+      "X-API-Key": REM_BG_API_KEY,
+  }
+  files = {
+      "image_file": (input_file_name, open(input_file_name, "rb")),
+  }
+  return requests.post("https://api.remove.bg/v1.0/removebg",
                       headers=headers,
                       files=files,
                       allow_redirects=True,
                       stream=True)
-    return r
 
 
 async def ReTrieveURL(input_url):
-    headers = {
-        "X-API-Key": REM_BG_API_KEY,
-    }
-    data = {"image_url": input_url}
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
+  headers = {
+      "X-API-Key": REM_BG_API_KEY,
+  }
+  data = {"image_url": input_url}
+  return requests.post("https://api.remove.bg/v1.0/removebg",
                       headers=headers,
                       data=data,
                       allow_redirects=True,
                       stream=True)
-    return r
 
 
 # ===== CONSTANT =====
-if WEATHER_DEFCITY:
-    DEFCITY = WEATHER_DEFCITY
-else:
-    DEFCITY = None
+DEFCITY = WEATHER_DEFCITY or None
 # ====================
 
 
@@ -446,8 +440,7 @@ async def get_weather(weather):
         return temp[0]
 
     def sun(unix):
-        xx = datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
-        return xx
+      return datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
 
     await weather.edit(
         f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
@@ -496,35 +489,35 @@ async def youtube_search(query,
                          token=None,
                          location=None,
                          location_radius=None):
-    """ Do a YouTube search. """
-    youtube = build('youtube',
-                    'v3',
-                    developerKey=YOUTUBE_API_KEY,
-                    cache_discovery=False)
-    search_response = youtube.search().list(
-        q=query,
-        type="video",
-        pageToken=token,
-        order=order,
-        part="id,snippet",
-        maxResults=10,
-        location=location,
-        locationRadius=location_radius).execute()
+  """ Do a YouTube search. """
+  youtube = build('youtube',
+                  'v3',
+                  developerKey=YOUTUBE_API_KEY,
+                  cache_discovery=False)
+  search_response = youtube.search().list(
+      q=query,
+      type="video",
+      pageToken=token,
+      order=order,
+      part="id,snippet",
+      maxResults=10,
+      location=location,
+      locationRadius=location_radius).execute()
 
-    videos = []
+  videos = [
+      search_result for search_result in search_response.get("items", [])
+      if search_result["id"]["kind"] == "youtube#video"
+  ]
 
-    for search_result in search_response.get("items", []):
-        if search_result["id"]["kind"] == "youtube#video":
-            videos.append(search_result)
-    try:
-        nexttok = search_response["nextPageToken"]
-        return (nexttok, videos)
-    except HttpError:
-        nexttok = "last_page"
-        return (nexttok, videos)
-    except KeyError:
-        nexttok = "KeyError, try again."
-        return (nexttok, videos)
+  try:
+      nexttok = search_response["nextPageToken"]
+      return (nexttok, videos)
+  except HttpError:
+      nexttok = "last_page"
+      return (nexttok, videos)
+  except KeyError:
+      nexttok = "KeyError, try again."
+      return (nexttok, videos)
 
 @javes.on(rekcah05(pattern=f"read(?: |$)(.*)", allow_sudo=True))
 async def ocr(event):
@@ -662,38 +655,33 @@ async def kbg(remob):
 # this method will call the API, and return in the appropriate format
 # with the name provided.
 async def ReTrieveFile(input_file_name):
-    headers = {
-        "X-API-Key": REM_BG_API_KEY,
-    }
-    files = {
-        "image_file": (input_file_name, open(input_file_name, "rb")),
-    }
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
+  headers = {
+      "X-API-Key": REM_BG_API_KEY,
+  }
+  files = {
+      "image_file": (input_file_name, open(input_file_name, "rb")),
+  }
+  return requests.post("https://api.remove.bg/v1.0/removebg",
                       headers=headers,
                       files=files,
                       allow_redirects=True,
                       stream=True)
-    return r
 
 
 async def ReTrieveURL(input_url):
-    headers = {
-        "X-API-Key": REM_BG_API_KEY,
-    }
-    data = {"image_url": input_url}
-    r = requests.post("https://api.remove.bg/v1.0/removebg",
+  headers = {
+      "X-API-Key": REM_BG_API_KEY,
+  }
+  data = {"image_url": input_url}
+  return requests.post("https://api.remove.bg/v1.0/removebg",
                       headers=headers,
                       data=data,
                       allow_redirects=True,
                       stream=True)
-    return r
 
 
 # ===== CONSTANT =====
-if WEATHER_DEFCITY:
-    DEFCITY = WEATHER_DEFCITY
-else:
-    DEFCITY = None
+DEFCITY = WEATHER_DEFCITY or None
 # ====================
 
 
@@ -790,8 +778,7 @@ async def get_weather(weather):
         return temp[0]
 
     def sun(unix):
-        xx = datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
-        return xx
+      return datetime.fromtimestamp(unix, tz=ctimezone).strftime("%I:%M %p")
 
     await weather.reply(
         f"**Temperature:** `{celsius(curtemp)}°C | {fahrenheit(curtemp)}°F`\n"
@@ -839,35 +826,35 @@ async def youtube_search(query,
                          token=None,
                          location=None,
                          location_radius=None):
-    """ Do a YouTube search. """
-    youtube = build('youtube',
-                    'v3',
-                    developerKey=YOUTUBE_API_KEY,
-                    cache_discovery=False)
-    search_response = youtube.search().list(
-        q=query,
-        type="video",
-        pageToken=token,
-        order=order,
-        part="id,snippet",
-        maxResults=10,
-        location=location,
-        locationRadius=location_radius).execute()
+  """ Do a YouTube search. """
+  youtube = build('youtube',
+                  'v3',
+                  developerKey=YOUTUBE_API_KEY,
+                  cache_discovery=False)
+  search_response = youtube.search().list(
+      q=query,
+      type="video",
+      pageToken=token,
+      order=order,
+      part="id,snippet",
+      maxResults=10,
+      location=location,
+      locationRadius=location_radius).execute()
 
-    videos = []
+  videos = [
+      search_result for search_result in search_response.get("items", [])
+      if search_result["id"]["kind"] == "youtube#video"
+  ]
 
-    for search_result in search_response.get("items", []):
-        if search_result["id"]["kind"] == "youtube#video":
-            videos.append(search_result)
-    try:
-        nexttok = search_response["nextPageToken"]
-        return (nexttok, videos)
-    except HttpError:
-        nexttok = "last_page"
-        return (nexttok, videos)
-    except KeyError:
-        nexttok = "KeyError, try again."
-        return (nexttok, videos)
+  try:
+      nexttok = search_response["nextPageToken"]
+      return (nexttok, videos)
+  except HttpError:
+      nexttok = "last_page"
+      return (nexttok, videos)
+  except KeyError:
+      nexttok = "KeyError, try again."
+      return (nexttok, videos)
 
 
 @javes.on(rekcah05(pattern=f"read(?: |$)(.*)", allow_sudo=True))

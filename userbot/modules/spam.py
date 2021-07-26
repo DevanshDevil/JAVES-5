@@ -19,19 +19,18 @@ async def scam(e):
        await e.delete()
     except:
     	pass
-    options = ('typing', 'game' , 'voice', 'round', 'video' , 'photo', 'document')
     input_str = e.pattern_match.group(1)
-    args = input_str.split()  
-    if len(args) == 2:  
-        scam_action = str(args[1]).lower()
-        if not scam_action in options:
-           return await e.reply(f"Failed \n\n •**Error:** Invalid Action\n\n You can use one of this \n{options}")
-        try:
-            scam_time = int(args[0])
-        except:      
-             return await e.reply("Failed \n\n •**Error:** Invalid Time.....")
-    else:
+    args = input_str.split()
+    if len(args) != 2:
         return await e.reply(f"**Error**\nusage `!scam <time in seconds> <action>`")
+    scam_action = str(args[1]).lower()
+    options = ('typing', 'game' , 'voice', 'round', 'video' , 'photo', 'document')
+    if scam_action not in options:
+        return await e.reply(f"Failed \n\n •**Error:** Invalid Action\n\n You can use one of this \n{options}")
+    try:
+        scam_time = int(args[0])
+    except:      
+         return await e.reply("Failed \n\n •**Error:** Invalid Time.....")
     try:
         if (scam_time > 0):            
             async with e.client.action(e.chat_id, scam_action):
@@ -43,104 +42,113 @@ async def scam(e):
 @javes.on(rekcah05(pattern=f"(?:rspam|rsp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:rspam|rsp)\s(.*)")
 async def repeat(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    cnt, txt = e.pattern_match.group(1).split(' ', 1)
-    replyCount = int(cnt)
-    toBeRepeated = txt
-    replyText = toBeRepeated + "\n"
-    for i in range(0, replyCount - 1):
-        replyText += toBeRepeated + "\n"
-    await e.reply(replyText)
-  except:      
-        return await e.reply(f"**Error**\nusage `! repeatspam <count> <text>`")
+    sender = await e.get_sender()
+    me = await e.client.get_me()
+    if sender.id != me.id and not FULL_SUDO:
+        return await e.reply("`Sorry normal sudo users cant access this command..`")
+    try:
+         await e.delete()
+    except:
+      	pass
+    try:
+        cnt, txt = e.pattern_match.group(1).split(' ', 1)
+        replyCount = int(cnt)
+        toBeRepeated = txt
+        replyText = toBeRepeated + "\n"
+        for _ in range(replyCount - 1):
+            replyText += toBeRepeated + "\n"
+        await e.reply(replyText)
+    except:      
+          return await e.reply(f"**Error**\nusage `! repeatspam <count> <text>`")
 
 
 @javes.on(rekcah05(pattern=f"(?:cspam|csp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:cspam|csp)\s(.*)")
 async def tmeme(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    cspam = str(e.pattern_match.group(1))
-    message = cspam.replace(" ", "")
-    for letter in message:
-        await e.respond(letter)
-  except:      
-        return await e.reply(f"**Error**\nusage `!cspam <text>`")
+    sender = await e.get_sender()
+    me = await e.client.get_me()
+    if sender.id != me.id and not FULL_SUDO:
+        return await e.reply("`Sorry normal sudo users cant access this command..`")
+    try:
+         await e.delete()
+    except:
+      	pass
+    try:
+      cspam = str(e.pattern_match.group(1))
+      message = cspam.replace(" ", "")
+      for letter in message:
+          await e.respond(letter)
+    except:      
+          return await e.reply(f"**Error**\nusage `!cspam <text>`")
 
 @javes.on(rekcah05(pattern=f"(?:wspam|wsp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:wspam|wsp)\s(.*)")
 async def tmeme(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    wspam = str(e.pattern_match.group(1))
-    message = wspam.split()
-    for word in message:
-        await e.respond(word)
-  except:      
-        return await e.reply(f"**Error**\nusage `!wspam  <text> <text> <text>`")
+    sender = await e.get_sender()
+    me = await e.client.get_me()
+    if sender.id != me.id and not FULL_SUDO:
+        return await e.reply("`Sorry normal sudo users cant access this command..`")
+    try:
+         await e.delete()
+    except:
+      	pass
+    try:
+      wspam = str(e.pattern_match.group(1))
+      message = wspam.split()
+      for word in message:
+          await e.respond(word)
+    except:      
+          return await e.reply(f"**Error**\nusage `!wspam  <text> <text> <text>`")
 
 
 @javes.on(rekcah05(pattern=f"(?:dmspam|dmsp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:dmspam|dmsp)\s(.*)")
 async def tiny_pic_spam(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
-    counter = int(e.pattern_match.group(1).split(' ', 2)[1])
-    reply_message = await e.get_reply_message() 
-    if not reply_message or not e.reply_to_msg_id or not reply_message.media or not reply_message.media:
-       return await e.edit("```Reply to a media message```")
-    message = reply_message.media
-    for i in range(1, counter):
-        await e.client.send_file(e.chat_id, message)
-        await sleep(spamDelay)
-  except:      
-        return await e.reply(f"**Error**\nusage `!ddspam <time in seconds> <count> reply to a media/photo/video`")
+    sender = await e.get_sender()
+    me = await e.client.get_me()
+    if sender.id != me.id and not FULL_SUDO:
+        return await e.reply("`Sorry normal sudo users cant access this command..`")
+    try:
+         await e.delete()
+    except:
+      	pass
+    try:
+        spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
+        counter = int(e.pattern_match.group(1).split(' ', 2)[1])
+        reply_message = await e.get_reply_message()
+        if (
+            not reply_message
+            or not e.reply_to_msg_id
+            or not reply_message.media
+        ):
+            return await e.edit("```Reply to a media message```")
+        message = reply_message.media
+        for _ in range(1, counter):
+            await e.client.send_file(e.chat_id, message)
+            await sleep(spamDelay)
+    except:      
+          return await e.reply(f"**Error**\nusage `!ddspam <time in seconds> <count> reply to a media/photo/video`")
 
 @javes.on(rekcah05(pattern=f"(?:delayspam|dsp)\s(.*)", allow_sudo=True))
 @javes05(outgoing=True, pattern=r"^\!(?:delayspam|dsp)\s(.*)")
 async def spammer(e):
-  sender = await e.get_sender() ; me = await e.client.get_me()
-  if not sender.id == me.id and not FULL_SUDO:
-       return await e.reply("`Sorry normal sudo users cant access this command..`")
-  try:
-       await e.delete()
-  except:
-    	pass
-  try:
-    spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
-    counter = int(e.pattern_match.group(1).split(' ', 2)[1])
-    spam_message = str(e.pattern_match.group(1).split(' ', 2)[2])
-    for i in range(1, counter):
-        await e.respond(spam_message)
-        await sleep(spamDelay)
-  except:      
-        return await e.reply(f"**Error**\nusage `!dealyspam <time in seconds> <count> <text>`")
+    sender = await e.get_sender()
+    me = await e.client.get_me()
+    if sender.id != me.id and not FULL_SUDO:
+        return await e.reply("`Sorry normal sudo users cant access this command..`")
+    try:
+         await e.delete()
+    except:
+      	pass
+    try:
+        spamDelay = float(e.pattern_match.group(1).split(' ', 2)[0])
+        counter = int(e.pattern_match.group(1).split(' ', 2)[1])
+        spam_message = str(e.pattern_match.group(1).split(' ', 2)[2])
+        for _ in range(1, counter):
+            await e.respond(spam_message)
+            await sleep(spamDelay)
+    except:      
+          return await e.reply(f"**Error**\nusage `!dealyspam <time in seconds> <count> <text>`")
 
 
 CMD_HELP.update({

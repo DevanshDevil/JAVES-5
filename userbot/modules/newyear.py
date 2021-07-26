@@ -14,7 +14,7 @@ async def _(event):
     if event.fwd_from:
         return
     lightning_anmation_interval = 4
-    ttl = range(0, 29)
+    ttl = range(29)
     await event.edit("Wishing You a Happy new year to all...")
     chars = [
         f"**Hello!👋**",

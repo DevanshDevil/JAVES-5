@@ -2,7 +2,7 @@ import platform
 import sys
 from telethon import version
 from userbot import (HEROKU_APP_NAME, HEROKU_API_KEY, CMD_HELP, BOTLOG, BOTLOG_CHATID, JAVES_NAME, ALIVE_NAME, YOUR_SHORT_NAME)
-from userbot.events import javes05, rekcah05 
+from userbot.events import javes05, rekcah05
 import os
 shivam = os.environ.get("ALIVE_PIC","https://telegra.ph/file/a1c39c87eeeb2a63ffa62.jpg")
 
@@ -35,28 +35,18 @@ S3_USER = os.environ.get("S3_USER", DEFAULTUSER)
 v = "5.0.0"
 
 if rksu:
- if FULL_SUDO:
-    sudork = 'Full access'
- else:
-    sudork = 'Normal access'
+  sudork = 'Full access' if FULL_SUDO else 'Normal access'
 else:
-	sudork = 'NotSet'
+  sudork = 'NotSet'
 
 
-if SPAM_PROTECT:
-	ss = "True"
-else:
-	ss = "False"
-
+ss = "True" if SPAM_PROTECT else "False"
 try:
-   Heroku = heroku3.from_key(HEROKU_API_KEY)                         
-   app = Heroku.app(HEROKU_APP_NAME)
-   herokurk = 'connected'
+  Heroku = heroku3.from_key(HEROKU_API_KEY)                         
+  app = Heroku.app(HEROKU_APP_NAME)
+  herokurk = 'connected'
 except:
-	herokurk = '[Failed to connect](https://telegra.ph/RkPavi-06-09-6)'
-	pass
-
-
+  herokurk = '[Failed to connect](https://telegra.ph/RkPavi-06-09-6)'
 if BOTLOG_CHATID:
 	logrk = 'connected'
 else:

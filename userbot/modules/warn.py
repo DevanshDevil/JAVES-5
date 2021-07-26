@@ -27,9 +27,9 @@ from userbot.events import javes05
 async def is_admin(chat_id, user_id):
     req_jo = await bot(GetParticipantRequest(channel=chat_id,user_id=user_id))
     chat_participant = req_jo.participant
-    if isinstance(chat_participant, ChannelParticipantCreator) or isinstance(chat_participant, ChannelParticipantAdmin):
-        return True
-    return False
+    return isinstance(
+        chat_participant, (ChannelParticipantCreator, ChannelParticipantAdmin)
+    )
 
 MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 javes = bot

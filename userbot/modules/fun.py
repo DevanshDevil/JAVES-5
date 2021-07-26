@@ -789,10 +789,8 @@ async def slap(replied_user, event):
     throw = choice(THROW)
     where = choice(WHERE)
 
-    caption = "..." + temp.format(
+    return "..." + temp.format(
         victim=slapped, item=item, hits=hit, throws=throw, where=where)
-
-    return caption
 
 
 
@@ -832,10 +830,8 @@ async def slap(replied_user, event):
     throw = choice(THROW)
     where = choice(WHERE)
 
-    caption = "..." + temp.format(
+    return "..." + temp.format(
         victim=slapped, item=item, hits=hit, throws=throw, where=where)
-
-    return caption
 
 
 
@@ -846,7 +842,7 @@ async def slap(replied_user, event):
 async def lol(lel):
     """ Ok... """
     okay = "-_-"
-    for i in range(10):
+    for _ in range(10):
         okay = okay[:-1] + "_-"
         await lel.edit(okay)
 
@@ -854,7 +850,7 @@ async def lol(lel):
 @javes05(outgoing=True, pattern="^!(yes|no|maybe|decide)$")
 async def decide(event):
     decision = event.pattern_match.group(1).lower()
-    message_id = event.reply_to_msg_id if event.reply_to_msg_id else None
+    message_id = event.reply_to_msg_id or None
     if decision != "decide":
         r = requests.get(f"https://yesno.wtf/api?force={decision}").json()
     else:
@@ -869,7 +865,7 @@ async def decide(event):
 @javes05(outgoing=True, pattern="^;_;$")
 async def fun(e):
     t = ";_;"
-    for j in range(10):
+    for _ in range(10):
         t = t[:-1] + "_;"
         await e.edit(t)
 
@@ -924,10 +920,7 @@ async def copypasta(cp_e):
         elif owo.lower() == b_char:
             reply_text += "🅱️"
         else:
-            if bool(getrandbits(1)):
-                reply_text += owo.upper()
-            else:
-                reply_text += owo.lower()
+            reply_text += owo.upper() if bool(getrandbits(1)) else owo.lower()
     reply_text += choice(EMOJIS)
     await cp_e.edit(reply_text)
 
@@ -935,7 +928,7 @@ async def copypasta(cp_e):
 @javes05(outgoing=True, pattern="^!vapor(?: |$)(.*)")
 async def vapor(vpr):
     """ Vaporize everything! """
-    reply_text = list()
+    reply_text = []
     textx = await vpr.get_reply_message()
     message = vpr.pattern_match.group(1)
     if message:
@@ -980,48 +973,50 @@ async def stretch(stret):
 @javes05(outgoing=True, pattern="^!style(?: |$)(.*)")
 async def zal(zgfy):
     """ Invoke the feeling of chaos. """
-    if not zgfy.text[0].isalpha() and zgfy.text[0] not in ("/", "#", "@"):
-        reply_text = list()
-        textx = await zgfy.get_reply_message()
-        message = zgfy.pattern_match.group(1)
-        if message:
-            pass
-        elif textx:
-            message = textx.text
-        else:
-            await zgfy.edit(
-                "`gͫ ̆ i̛ ̺ v͇̆ ȅͅ   a̢ͦ   s̴̪ c̸̢ ä̸ rͩͣ y͖͞   t̨͚ é̠ x̢͖  t͔͛`"
-            )
-            return
+    if zgfy.text[0].isalpha() or zgfy.text[0] in ("/", "#", "@"):
+        return
 
-        for charac in message:
-            if not charac.isalpha():
-                reply_text.append(charac)
-                continue
+    reply_text = []
+    textx = await zgfy.get_reply_message()
+    message = zgfy.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
+    else:
+        await zgfy.edit(
+            "`gͫ ̆ i̛ ̺ v͇̆ ȅͅ   a̢ͦ   s̴̪ c̸̢ ä̸ rͩͣ y͖͞   t̨͚ é̠ x̢͖  t͔͛`"
+        )
+        return
 
-            for _ in range(0, 3):
-                randint = random.randint(0, 2)
-
-                if randint == 0:
-                    charac = charac.strip() + \
-                        random.choice(ZALG_LIST[0]).strip()
-                elif randint == 1:
-                    charac = charac.strip() + \
-                        random.choice(ZALG_LIST[1]).strip()
-                else:
-                    charac = charac.strip() + \
-                        random.choice(ZALG_LIST[2]).strip()
-
+    for charac in message:
+        if not charac.isalpha():
             reply_text.append(charac)
+            continue
 
-        await zgfy.edit("".join(reply_text))
+        for _ in range(3):
+            randint = random.randint(0, 2)
+
+            if randint == 0:
+                charac = charac.strip() + \
+                    random.choice(ZALG_LIST[0]).strip()
+            elif randint == 1:
+                charac = charac.strip() + \
+                    random.choice(ZALG_LIST[1]).strip()
+            else:
+                charac = charac.strip() + \
+                    random.choice(ZALG_LIST[2]).strip()
+
+        reply_text.append(charac)
+
+    await zgfy.edit("".join(reply_text))
 
 
 @javes.on(rekcah05(pattern=f"style(?: |$)(.*)", allow_sudo=True))
 async def zal(zgfy):
     """ Invoke the feeling of chaos. """
     if not zgfy.text[0].isalpha() and zgfy.text[0] not in ("/", "#", "@", "!"):
-        reply_text = list()
+        reply_text = []
         textx = await zgfy.get_reply_message()
         message = zgfy.pattern_match.group(1)
         if message:
@@ -1039,7 +1034,7 @@ async def zal(zgfy):
                 reply_text.append(charac)
                 continue
 
-            for _ in range(0, 3):
+            for _ in range(3):
                 randint = random.randint(0, 2)
 
                 if randint == 0:
@@ -1064,7 +1059,7 @@ async def zal(zgfy):
             reply_text.append(charac)
             continue
 
-        for _ in range(0, 3):
+        for _ in range(3):
             textz = randint(0, 2)
 
             if textz == 0:
@@ -1150,7 +1145,7 @@ async def shrugger(shg):
 @javes05(outgoing=True, pattern="^Oof$")
 async def Oof(e):
     t = "Oof"
-    for j in range(15):
+    for _ in range(15):
         t = t[:-1] + "of"
         await e.edit(t)
 
@@ -1174,7 +1169,7 @@ async def iqless(e):
 async def moon(event):
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1186,7 +1181,7 @@ async def moon(event):
 async def earth(event):
     deq = deque(list("🌏🌍🌎🌎🌍🌏🌍🌎"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1198,7 +1193,7 @@ async def earth(event):
 async def clock(event):
     deq = deque(list("🕙🕘🕗🕖🕕🕔🕓🕒🕑🕐🕛"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1210,7 +1205,7 @@ async def clock(event):
 async def rain(event):
     deq = deque(list("☀️🌤⛅️🌥☁️🌧⛈"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1222,7 +1217,7 @@ async def rain(event):
 async def love(event):
     deq = deque(list("❤️💛💚💙💜"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1233,7 +1228,7 @@ async def love(event):
 @javes05(outgoing=True, pattern="^!mock(?: |$)(.*)")
 async def spongemocktext(mock):
     """ Do it and find the real fun. """
-    reply_text = list()
+    reply_text = []
     textx = await mock.get_reply_message()
     message = mock.pattern_match.group(1)
     if message:
@@ -1536,7 +1531,6 @@ async def shalom(e):
 
 
 @javes05(outgoing=True, pattern="^!call(?: |$)(.*)")
-
 async def _(event):
 
     if event.fwd_from:
@@ -1545,16 +1539,14 @@ async def _(event):
 
     animation_interval = 4
 
-    animation_ttl = range(0, 18)
-
+    animation_ttl = range(18)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "call":
 
     await event.edit("Calling")
 
     animation_chars = [
-        
+
             "`Connecting To Telegram Headquarters...`",
             "`Call Connected.`",
             "`Telegram: Hello This is Telegram HQ. Who is this?`",
@@ -2056,20 +2048,19 @@ async def deepfry(img: Image) -> Image:
 
 
 async def check_media(reply_message):
-    if reply_message and reply_message.media:
-        if reply_message.photo:
-            data = reply_message.photo
-        elif reply_message.document:
-            if DocumentAttributeFilename(file_name='AnimatedSticker.tgs') in reply_message.media.document.attributes:
-                return False
-            if reply_message.gif or reply_message.video or reply_message.audio or reply_message.voice:
-                return False
-            data = reply_message.media.document
-        else:
-            return False
-    else:
+    if not reply_message or not reply_message.media:
         return False
 
+    if reply_message.photo:
+        data = reply_message.photo
+    elif reply_message.document:
+        if DocumentAttributeFilename(file_name='AnimatedSticker.tgs') in reply_message.media.document.attributes:
+            return False
+        if reply_message.gif or reply_message.video or reply_message.audio or reply_message.voice:
+            return False
+        data = reply_message.media.document
+    else:
+        return False
     if not data or data is None:
         return False
     else:
@@ -2144,7 +2135,6 @@ async def _(event):
 
 
 @javes05(outgoing=True, pattern="^!play$")
-
 async def _(event):
 
     if event.fwd_from:
@@ -2153,10 +2143,8 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 30)
-
+    animation_ttl = range(30)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "chu":
 
     await event.edit("Nice...")
@@ -2164,7 +2152,7 @@ async def _(event):
     animation_chars = [
 
             "🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
-            
+
             "◼️🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎??🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴????♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
 
             "◼️◼️🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴??🌕♓♎⛎🔴🔵??♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵??♓♎⛎",
@@ -2176,11 +2164,11 @@ async def _(event):
             "‎◼️◼️◼️◼️◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎??🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
 
             "◼️◼️◼️◼️◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
-            
+
             "◼️◼️◼️◼️◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
-            
+
             "◼️◼️◼️◼️◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n??🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
-   
+
             "◼️◼️◼️◼️◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️",
 
             "◼️◼️◼️◼️◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎◼️◼️",
@@ -2214,9 +2202,9 @@ async def _(event):
             "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️🔴🔵🌕♓♎⛎◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
             "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-          
+
             "◼️◼️◼️◼️\n◼️◼️◼️◼️\n◼️◼️◼️◼️\n◼️◼️◼️◼️",
-           
+
             "◼️◼️◼️\n◼️◼️◼️\n◼️◼️◼️",
 
             "◼️◼️\n◼️◼️",
@@ -2295,10 +2283,8 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 30)
-
+    animation_ttl = range(30)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "chu":
 
     await event.edit("wt?")
@@ -2332,10 +2318,8 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 30)
-
+    animation_ttl = range(30)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "chu":
 
     await event.edit("connecting......")
@@ -2391,10 +2375,8 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 30)
-
+    animation_ttl = range(30)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "chu":
 
     await event.edit("ssssssssss.......")
@@ -2402,7 +2384,7 @@ async def _(event):
     animation_chars = [
 
             "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-            
+
             "◻️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
             "◻️◻️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
@@ -2414,11 +2396,11 @@ async def _(event):
             "‎◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
 
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-            
+
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
-            
+
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◼️",
-   
+
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️",
 
             "◻️◻️◻️◻️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◼️◻️\n◼️◼️◼️◻️◻️",
@@ -2452,7 +2434,7 @@ async def _(event):
             "◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◼️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️",
 
             "◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️\n◻️◻️◻️◻️◻️",
-          
+
             "◻️◻️◻️◻️◻️\n◻️◼️◻️◼️◻️\n◻️◻️◻️◻️◻️\n◻️◼️◼️◼️◻️\n◻️◻️◻️◻️◻️"
         ]
 
@@ -2649,10 +2631,8 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 30)
-
+    animation_ttl = range(30)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "chu":
 
     await event.edit("Thinking........")
@@ -2715,16 +2695,14 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 30)
-
+    animation_ttl = range(30)
    # input_str = event.pattern_match.group(1)
-
    # if input_str == "chu":
 
     await event.edit("hacking......")
 
     animation_chars = [
-        
+
             "`Connecting To Hacked Private Server...`",
             "`Target Selected.`",
             "`Hacking... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
@@ -2778,7 +2756,6 @@ async def _(event):
 
 
 @javes05(outgoing=True, disable_errors=True, pattern="^!sad(?: |$)(.*)")
-
 async def _(event):
 
     if event.fwd_from:
@@ -2786,13 +2763,13 @@ async def _(event):
         return
 
     animation_interval = 1
-    
 
-    animation_ttl = range(0, 103)
 
-    
+    animation_ttl = range(103)
 
-  
+        
+
+      
 
     await event.edit("crying")
 
@@ -3036,7 +3013,6 @@ async def sprinkle(event):
 
 
 @javes05(outgoing=True, disable_errors=True, pattern="^!nakal$")
-
 async def _(event):
 
     if event.fwd_from:
@@ -3045,7 +3021,7 @@ async def _(event):
 
     animation_interval = 0.5
 
-    animation_ttl = range(0, 10)
+    animation_ttl = range(10)
 
     #input_str = event.pattern_match.group(1)
 
@@ -3054,7 +3030,7 @@ async def _(event):
     await event.edit("hmmmm")
 
     animation_chars = [
-        
+
             "`⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⣴⠿⠏⠀⠀⠀⠀⠀   ⢳⡀⠀⡏⠀⠀⠀   ⠀⢷\n⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀  ⠀   ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿  ⣸ Nikal   ⡇\n ⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀  ⣿  ⢹⠀        ⡇\n  ⠙⢿⣯⠄⠀⠀⠀__⠀⠀⡿ ⠀⡇⠀⠀⠀⠀    ⡼\n⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀   ⠘⠤⣄⣠⠞⠀\n⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀\n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀\n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀ ⠀⣄⢸⠀⠀⠀⠀⠀⠀`",
             "`⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⣴⠿⠏⠀⠀⠀⠀⠀  ⠀⢳⡀⠀⡏⠀⠀⠀   ⠀⢷\n⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀      ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿  ⣸ Lavde   ⡇\n ⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀  ⣿  ⢹⠀        ⡇\n  ⠙⢿⣯⠄⠀⠀|__|⠀⠀⡿ ⠀⡇⠀⠀⠀⠀    ⡼\n⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀   ⠘⠤⣄⣠⠞⠀\n⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀\n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀\n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀ ⠀⣄⢸⠀⠀⠀⠀⠀⠀`",
             "`⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⣴⠿⠏⠀⠀     ⠀⢳⡀⠀⡏⠀⠀    ⠀⢷\n⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀⠀     ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿  ⣸ Pehli   ⡇\n ⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀  ⣿  ⢹⠀         ⡇\n  ⠙⢿⣯⠄⠀⠀(P)⠀⠀⡿ ⠀⡇⠀⠀⠀⠀    ⡼\n⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀   ⠘⠤⣄⣠⠞⠀\n⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀\n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀\n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀ ⠀⣄⢸⠀⠀⠀⠀⠀⠀`",
@@ -3140,7 +3116,6 @@ async def insult(e):
         
         
 @javes05(outgoing=True, pattern="^!abuse3$")
-
 async def _(event):
 
     if event.fwd_from:
@@ -3149,7 +3124,7 @@ async def _(event):
 
     animation_interval = 1.5
 
-    animation_ttl = range(0, 10)
+    animation_ttl = range(10)
 
     #input_str = event.pattern_match.group(1)
 
@@ -3159,7 +3134,7 @@ async def _(event):
 
     animation_chars = [
 
-    
+
             "`You Is Going To Fuck`",
             "`Fucking You\n\n\nYour Pussy Get Red\nCumming On Pussy\n\nAlmost Done... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
             "`Fucking You \n\n\nYour Pussy Get Red\nCumming On Pussy\n\nAlmost Done...\n\nFucked Percentage... 4%\n█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ `",
@@ -3180,7 +3155,6 @@ async def _(event):
 
 
 @javes05(outgoing=True, pattern="^!fuck$")
-
 async def _(event):
 
     if event.fwd_from:
@@ -3189,7 +3163,7 @@ async def _(event):
 
     animation_interval = 0.3
 
-    animation_ttl = range(0, 10)
+    animation_ttl = range(10)
 
     #input_str = event.pattern_match.group(1)
 
@@ -3206,7 +3180,7 @@ async def _(event):
             "👉  ✊️",
 
             "👉✊️💦",
-            
+
             "👉       ✊️",
 
             "👉     ✊️",
@@ -3245,7 +3219,6 @@ async def _(event):
 
 
 @javes05(outgoing=True, pattern="^!sax$")
-
 async def _(event):
 
     if event.fwd_from:
@@ -3254,7 +3227,7 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 10)
+    animation_ttl = range(10)
 
     #input_str = event.pattern_match.group(1)
 
@@ -3282,7 +3255,6 @@ async def _(event):
 
 
 @javes05(outgoing=True, pattern="^!sax$")
-
 async def _(event):
 
     if event.fwd_from:
@@ -3291,7 +3263,7 @@ async def _(event):
 
     animation_interval = 1
 
-    animation_ttl = range(0, 10)
+    animation_ttl = range(10)
 
     #input_str = event.pattern_match.group(1)
 

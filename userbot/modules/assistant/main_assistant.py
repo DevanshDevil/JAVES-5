@@ -110,8 +110,6 @@ async def users(event):
                 caption="Total Users In Your Bot.",
                 allow_cache=False,
             )
-    else:
-        pass
 
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
@@ -145,11 +143,8 @@ async def sed(event):
     msg.id
     msg_s = event.raw_text
     user_id, reply_message_id = his_userid(msg.id)
-    if event.sender_id == bot.uid:
-        if event.raw_text.startswith("/"):
-            pass
-        else:
-            await tgbot.send_message(user_id, msg_s)
+    if event.sender_id == bot.uid and not event.raw_text.startswith("/"):
+        await tgbot.send_message(user_id, msg_s)
 
 
 # broadcast
