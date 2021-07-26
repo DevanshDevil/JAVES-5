@@ -20,7 +20,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0, 14)
+    animation_ttl = range(14)
     await event.edit("brain")
     animation_chars = [          
               "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
@@ -39,7 +39,7 @@ async def _(event):
               "YOᑌᖇ ᗷᖇᗩIᑎ ➡️ 🧠\n\n           <(^_^ <)🗑",
           ]
     for i in animation_ttl:
-        	
+
             await asyncio.sleep(animation_interval)
             await event.edit(animation_chars[i %14 ])
 		
@@ -75,7 +75,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.7
-    animation_ttl = range(0, 12)
+    animation_ttl = range(12)
     await event.edit("ready to die dude.....")
     animation_chars = [
 
@@ -172,15 +172,15 @@ async def _(event):
 
 @borg.on(admin_cmd(pattern=f"charging$"))
 async def timer_blankx(e):
- txt=e.text[10:] + '\n\n`Tesla Wireless Charging (beta) Started...\nDevice Detected: Nokia 1100\nBattery Percentage:` '
- j=10
- k=j
- for j in range(j):
-  await e.edit(txt + str(k))
-  k=k+10
-  await asyncio.sleep(1)
- await asyncio.sleep(1) 
- await e.edit("`Tesla Wireless Charging (beta) Completed...\nDevice Detected: Nokia 1100 (Space Grey Varient)\nBattery Percentage:` [100%](https://telegra.ph/file/a45aa7450c8eefed599d9.mp4) ", link_preview=True)
+    txt=e.text[10:] + '\n\n`Tesla Wireless Charging (beta) Started...\nDevice Detected: Nokia 1100\nBattery Percentage:` '
+    j=10
+    k=j
+    for j in range(j):
+        await e.edit(txt + str(k))
+        k += 10
+        await asyncio.sleep(1)
+    await asyncio.sleep(1)
+    await e.edit("`Tesla Wireless Charging (beta) Completed...\nDevice Detected: Nokia 1100 (Space Grey Varient)\nBattery Percentage:` [100%](https://telegra.ph/file/a45aa7450c8eefed599d9.mp4) ", link_preview=True)
 
 
 @borg.on(admin_cmd("bigoof"))
@@ -188,7 +188,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
-    animation_ttl = range(0, 7)
+    animation_ttl = range(7)
     await event.edit("┏━━━┓╋╋╋╋┏━━━┓ \n┃┏━┓┃╋╋╋╋┃┏━┓┃ \n┃┃╋┃┣┓┏┓┏┫┃╋┃┃ \n┃┃╋┃┃┗┛┗┛┃┃╋┃┃ \n┃┗━┛┣┓┏┓┏┫┗━┛┃ \n┗━━━┛┗┛┗┛┗━━━┛")
     animation_chars = [
             "╭━━━╮╱╱╱╭━╮ \n┃╭━╮┃╱╱╱┃╭╯ \n┃┃╱┃┣━━┳╯╰╮ \n┃┃╱┃┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃┃┃ \n╰━━━┻━━╯╰╯ ",
@@ -199,7 +199,7 @@ async def _(event):
             "╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━┻━━╯╰╯",
             "╭━━━╮╱╱╱╱╱╱╱╱╱╭━╮ \n┃╭━╮┃╱╱╱╱╱╱╱╱╱┃╭╯ \n┃┃╱┃┣━━┳━━┳━━┳╯╰╮ \n┃┃╱┃┃╭╮┃╭╮┃╭╮┣╮╭╯ \n┃╰━╯┃╰╯┃╰╯┃╰╯┃┃┃ \n╰━━━┻━━┻━━┻━━╯╰╯"
          ]
-          
+
     for i in animation_ttl:        	
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 7])
@@ -210,12 +210,12 @@ async def payf(event):
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1,paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1, paytext*1)
     await event.edit(pay)
 
-@borg.on(admin_cmd(pattern="uff ?(.*)"))      
+@borg.on(admin_cmd(pattern="uff ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
-    animation_interval = 1    
-    animation_ttl = range(0, 13)    
+    animation_interval = 1
+    animation_ttl = range(13)
     animation_chars = [
             "U",
             "Uf",    
@@ -268,7 +268,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 20)
+    animation_ttl = range(20)
     animation_chars = [
             "▮",
             "▯",
@@ -285,7 +285,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 20)
+    animation_ttl = range(20)
     animation_chars = [
             "◧",
             "◨",
@@ -302,7 +302,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 20)
+    animation_ttl = range(20)
     animation_chars = [
             "╹",
             "╻",
@@ -319,7 +319,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 20)
+    animation_ttl = range(20)
     animation_chars = [
             "⚫",
             "⬤",
@@ -336,7 +336,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.5
-    animation_ttl = range(0, 20)
+    animation_ttl = range(20)
     animation_chars = [
             "🖤",
             "❤️",
@@ -353,7 +353,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0, 11)
+    animation_ttl = range(11)
     animation_chars = [
             "😁",
             "😧",
@@ -376,7 +376,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
-    animation_ttl = range(0, 6)
+    animation_ttl = range(6)
     animation_chars = [
             "😁🏿",
             "😁🏾",
@@ -394,7 +394,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
-    animation_ttl = range(0, 6)
+    animation_ttl = range(6)
     animation_chars = [
             "🐵",
             "🙉",
@@ -412,7 +412,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 2
-    animation_ttl = range(0, 11)
+    animation_ttl = range(11)
     animation_chars = [
             "**===================**\n      **Server Details**  \n**===================**\n\n\n**=>>>   CPU   <<<=**\n\n    **🔹current_freq:** 2500.09MHz\n    **🔹total_usage:** 10%\n\n    ●○○○○○○○○○\n\n    **🔹cpu core**\n\n        **🔹core_usage:** 5.9%\n        **🔹current_freq:** 2500.09MHz\n        |██████████▉  |\n       \n**=>>>   RAM   <<<=**\n\n    **🔹free:** 8.13GB\n    **🔹used:** 33.77GB\n    **🔹total:** 60.0GB\n    \n    ●●●●●●●○○○\n\n\n**=>>>   DISK   <<<=**\n\n   **🔹free:** 224.12GB\n    **🔹used:** 131.84GB\n    **🔹total:** 375.02GB\n    **🔹usage:** 37.0%\n\n    |████▍        |\n\n\n**=>>>   NETWORK   <<<=**\n\n    **🔹sent:** 158.98GB\n    **🔹recv:** 146.27GB\n    **🔹sent_packets:** 84518799\n    **🔹recv_packets:** 159720314\n\n\n**===================**\n",
             "**===================**\n      **Server Details**  \n**===================**\n\n\n**=>>>   CPU   <<<=**\n\n    **🔹current_freq:** 2500.09MHz\n    **🔹total_usage:** 30%\n\n    ●●●○○○○○○○\n\n    **🔹cpu core**\n\n        **🔹core_usage:** 20.4%\n        **🔹current_freq:** 2500.09MHz\n        |██████████▉  |\n       \n**=>>>   RAM   <<<=**\n\n    **🔹free:** 7.18GB\n    **🔹used:** 28.26GB\n    **🔹total:** 60.0GB\n    \n    ●●●●●●●●●●\n\n\n**=>>>   DISK   <<<=**\n\n   **🔹free:** 224.12GB\n    **🔹used:** 131.84GB\n    **🔹total:** 375.02GB\n    **🔹usage:** 37.0%\n\n    |████▍        |\n\n\n**=>>>   NETWORK   <<<=**\n\n    **🔹sent:** 146.27GB\n    **🔹recv:** 124.33GB\n    **🔹sent_packets:** 54635686\n    **🔹recv_packets:** 143565654\n\n\n**===================**\n",
@@ -434,7 +434,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0, 14)
+    animation_ttl = range(14)
     animation_chars = [
             "👈",
             "👉",
@@ -459,7 +459,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0, 13)
+    animation_ttl = range(13)
     animation_chars = [
             "🔟",
             "9️⃣",
@@ -483,7 +483,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 54)
+    animation_ttl = range(54)
     animation_chars = [
             "❤️",
             "🧡",
@@ -535,7 +535,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 27)
+    animation_ttl = range(27)
     await event.edit("snake..")
     animation_chars = [
             "◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️\n◼️◼️◼️◼️◼️",
@@ -607,7 +607,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.3
-    animation_ttl = range(0, 28)
+    animation_ttl = range(28)
     await event.edit("mc..")
     animation_chars = [
 
@@ -649,7 +649,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1
-    animation_ttl = range(0, 30)
+    animation_ttl = range(30)
     await event.edit("Injecting virus....")
     animation_chars = [
             "🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎\n🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎🔴🔵🌕♓♎⛎",
@@ -776,7 +776,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.5
-    animation_ttl = range(0, 6)
+    animation_ttl = range(6)
     await event.edit("nakal")
     animation_chars = [
             "`⠀⠀⠀⣠⣶⡾⠏⠉⠙⠳⢦⡀⠀⠀⠀⢠⠞⠉⠙⠲⡀⠀\n ⠀⣴⠿⠏⠀⠀⠀⠀⠀   ⢳⡀⠀⡏⠀⠀⠀   ⠀⢷\n⢠⣟⣋⡀⢀⣀⣀⡀⠀⣀⡀⣧⠀⢸⠀⠀⠀  ⠀   ⡇\n⢸⣯⡭⠁⠸⣛⣟⠆⡴⣻⡲⣿  ⣸ Nikal   ⡇\n ⣟⣿⡭⠀⠀⠀⠀⠀⢱⠀⠀  ⣿  ⢹⠀        ⡇\n  ⠙⢿⣯⠄⠀⠀⠀__⠀⠀⡿ ⠀⡇⠀⠀⠀⠀    ⡼\n⠀⠀⠀⠹⣶⠆⠀⠀⠀⠀⠀⡴⠃⠀   ⠘⠤⣄⣠⠞⠀\n⠀⠀⠀⠀⢸⣷⡦⢤⡤⢤⣞⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n⠀⢀⣤⣴⣿⣏⠁⠀⠀⠸⣏⢯⣷⣖⣦⡀⠀⠀⠀⠀⠀⠀\n⢀⣾⣽⣿⣿⣿⣿⠛⢲⣶⣾⢉⡷⣿⣿⠵⣿⠀⠀⠀⠀⠀⠀\n⣼⣿⠍⠉⣿⡭⠉⠙⢺⣇⣼⡏⠀⠀ ⠀⣄⢸⠀⠀⠀⠀⠀⠀`",
@@ -795,7 +795,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1.5
-    animation_ttl = range(0, 11)
+    animation_ttl = range(11)
     await event.edit("starting player...")
     animation_chars = [
             "⬤⬤⬤ 81% ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`✖️`\n\n⠀⠀⠀⠀⠀[Survivor Music Player](tg://user?id=916234223)\n\n⠀⠀⠀⠀**Now Playing:shape of u**\n\n**00:00** ▱▱▱▱▱▱▱▱▱▱ **00:10**\n\n⠀⠀⠀⠀⠀`🔂` `⏮️` `⏪️` `▶️` `⏩️` `⏭️`\n\n**⠀Next Song:** __Alan Walker - Alone.__\n\n⠀⠀⠀⠀**⠀Device: Nokia 1100**",
@@ -981,7 +981,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.5
-    animation_ttl = range(0, 70)
+    animation_ttl = range(70)
     await event.edit("loveu")
     animation_chars = [
             "😀",
@@ -1112,7 +1112,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
-    animation_ttl = range(0, 80)
+    animation_ttl = range(80)
     await event.edit("solarsystem")
     animation_chars = [
             "`◼️◼️◼️◼️◼️\n◼️◼️◼️◼️☀\n◼️◼️🌎◼️◼️\n🌕◼️◼️◼️◼️\n◼️◼️◼️◼️◼️`",
@@ -1225,7 +1225,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
-    animation_ttl = range(0, 101)
+    animation_ttl = range(101)
     await event.edit("smoon..")
     animation_chars = [
 
@@ -1247,7 +1247,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.1
-    animation_ttl = range(0, 117)
+    animation_ttl = range(117)
     await event.edit("tmoon")
     animation_chars = [
 
@@ -1293,9 +1293,9 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 0.50
-    animation_ttl = range(0, 16)
+    animation_ttl = range(16)
     animation_chars = [
-        
+
 
             "COMMAND CREATE BY @Kraken_The_BadASS",
             "🤡️",
@@ -1324,7 +1324,7 @@ async def _(event):
     if event.fwd_from:
         return
     animation_interval = 1.3
-    animation_ttl = range(0, 50)
+    animation_ttl = range(50)
     animation_chars = [
             "❤️",
             "🧡",

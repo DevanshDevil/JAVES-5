@@ -12,7 +12,7 @@ a = 0
 try:
   from virustotal_python import Virustotal ; a = 1
 except:
-  a = 2 ; pass
+  a = 2
 Vapi = os.environ.get("VTOTAL_API", None)
 from userbot import CMD_HELP, ALIVE_NAME, PM_MESSAGE, JAVES_NAME, JAVES_MSG, ORI_MSG, bot, TEMP_DOWNLOAD_DIRECTORY, BOTLOG, BOTLOG_CHATID
 JAVES_NNAME = str(JAVES_NAME) if JAVES_NAME else str(JAVES_MSG)
@@ -29,29 +29,30 @@ from userbot import LOGS, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 text = "scanning"
 
 async def progress(current, total, event, start, type_of_ps, file_name=None):
-    now = time.time()
-    diff = now - start
-    if round(diff % 10.00) == 0 or current == total:
-        percentage = current * 100 / total
-        speed = current / diff
-        elapsed_time = round(diff) * 1000
-        time_to_completion = round((total - current) / speed) * 1000
-        estimated_total_time = elapsed_time + time_to_completion
-        progress_str = "[{0}{1}] {2}%\n".format(
-            ''.join(["█" for i in range(math.floor(percentage / 10))]),
-            ''.join(["░" for i in range(10 - math.floor(percentage / 10))]),
-            round(percentage, 2))
-        tmp = progress_str + \
-            "{0} of {1}\nETA: {2}".format(
-                humanbytes(current),
-                humanbytes(total),
-                time_formatter(estimated_total_time)
-            )
-        if file_name:
-            await event.edit("{}\nFile Name: `{}`\n{}".format(
-                type_of_ps, file_name, tmp))
-        else:
-            await event.edit("{}\n{}".format(type_of_ps, tmp))
+  now = time.time()
+  diff = now - start
+  if round(diff % 10.00) == 0 or current == total:
+    percentage = current * 100 / total
+    speed = current / diff
+    elapsed_time = round(diff) * 1000
+    time_to_completion = round((total - current) / speed) * 1000
+    estimated_total_time = elapsed_time + time_to_completion
+    progress_str = "[{0}{1}] {2}%\n".format(
+        ''.join("█" for i in range(math.floor(percentage / 10))),
+        ''.join("░" for i in range(10 - math.floor(percentage / 10))),
+        round(percentage, 2),
+    )
+    tmp = progress_str + \
+        "{0} of {1}\nETA: {2}".format(
+            humanbytes(current),
+            humanbytes(total),
+            time_formatter(estimated_total_time)
+        )
+    if file_name:
+        await event.edit("{}\nFile Name: `{}`\n{}".format(
+            type_of_ps, file_name, tmp))
+    else:
+        await event.edit("{}\n{}".format(type_of_ps, tmp))
             
 def humanbytes(size):
     if not size:
@@ -265,37 +266,37 @@ async def vt(event):
 
 @javes05(outgoing=True, pattern="^!scan2(?: |$)(.*)")
 async def _(event):
-    reply_message = await event.get_reply_message() 
-    if not reply_message or not event.reply_to_msg_id or not reply_message.media or not reply_message.media:
-       return await event.edit("```Reply to a media message```")
-    chat = "@DrWebBot"
-    sender = reply_message.sender
-    await event.edit(" `Scanning......`")
-    async with bot.conversation(chat) as conv:
-          try:        
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=161163358))                   
-              await conv.send_message(reply_message)
-              song2 = await conv.get_response()
-              return await event.edit(f"**{JAVES_NNAME}:**  {song2.message}")
-          except:      
-              return await event.reply(f"Please unblock @DrWebBot and try again")
+  reply_message = await event.get_reply_message()
+  if not reply_message or not event.reply_to_msg_id or not reply_message.media:
+    return await event.edit("```Reply to a media message```")
+  chat = "@DrWebBot"
+  sender = reply_message.sender
+  await event.edit(" `Scanning......`")
+  async with bot.conversation(chat) as conv:
+        try:        
+            response = conv.wait_event(events.NewMessage(incoming=True,from_users=161163358))                   
+            await conv.send_message(reply_message)
+            song2 = await conv.get_response()
+            return await event.edit(f"**{JAVES_NNAME}:**  {song2.message}")
+        except:      
+            return await event.reply(f"Please unblock @DrWebBot and try again")
 
 @javes.on(rekcah05(pattern=f"scan2(?: |$)(.*)", allow_sudo=True))
 async def _(event):
-    reply_message = await event.get_reply_message() 
-    if not reply_message or not event.reply_to_msg_id or not reply_message.media or not reply_message.media:
-       return await event.reply("```Reply to a media message```")
-    chat = "@DrWebBot"
-    sender = reply_message.sender
-    rkp = await event.reply(" `Scanning......`")
-    async with bot.conversation(chat) as conv:
-          try:        
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=161163358))                   
-              await conv.send_message(reply_message)
-              song2 = await conv.get_response()
-              return await rkp.edit(f"**{JAVES_NNAME}:**  {song2.message}")
-          except:      
-              return await event.reply(f"Please unblock @DrWebBot and try again")
+  reply_message = await event.get_reply_message()
+  if not reply_message or not event.reply_to_msg_id or not reply_message.media:
+    return await event.reply("```Reply to a media message```")
+  chat = "@DrWebBot"
+  sender = reply_message.sender
+  rkp = await event.reply(" `Scanning......`")
+  async with bot.conversation(chat) as conv:
+        try:        
+            response = conv.wait_event(events.NewMessage(incoming=True,from_users=161163358))                   
+            await conv.send_message(reply_message)
+            song2 = await conv.get_response()
+            return await rkp.edit(f"**{JAVES_NNAME}:**  {song2.message}")
+        except:      
+            return await event.reply(f"Please unblock @DrWebBot and try again")
 
                                 
 

@@ -148,11 +148,13 @@ last_triggered_rkfilters = {}  # pylint:disable=E0602
 async def on_snip(event):
     global last_triggered_rkfilters
     name = event.raw_text
-    if event.chat_id in last_triggered_rkfilters:
-        if name in last_triggered_rkfilters[event.chat_id]:
-            # avoid userbot spam
-            # "I demand rights for us bots, we are equal to you humans." -Henri Koivuneva (t.me/UserbotTesting/2698)
-            return False
+    if (
+        event.chat_id in last_triggered_rkfilters
+        and name in last_triggered_rkfilters[event.chat_id]
+    ):
+        # avoid userbot spam
+        # "I demand rights for us bots, we are equal to you humans." -Henri Koivuneva (t.me/UserbotTesting/2698)
+        return False
     snips = get_all_rkfilters(event.chat_id)
     if snips:
         for snip in snips:
@@ -202,12 +204,13 @@ async def filter_incoming_handler(handler):
                 return
             for trigger in filters:
                 pro = fullmatch(trigger.keyword, name, flags=IGNORECASE)
-                if pro and trigger.f_mesg_id:
-                    msg_o = await handler.client.get_messages(
-                        entity=BOTLOG_CHATID, ids=int(trigger.f_mesg_id))
-                    await handler.reply(msg_o.message, file=msg_o.media)
-                elif pro and trigger.reply:
-                    await handler.reply(trigger.reply)
+                if pro:
+                    if trigger.f_mesg_id:
+                        msg_o = await handler.client.get_messages(
+                            entity=BOTLOG_CHATID, ids=int(trigger.f_mesg_id))
+                        await handler.reply(msg_o.message, file=msg_o.media)
+                    elif trigger.reply:
+                        await handler.reply(trigger.reply)
     except AttributeError:
         pass
 
@@ -497,7 +500,7 @@ async def rm_deletedacc(show):
 async def get_admin(show):
     """ For .admins command, list all of the admins of the chat. """
     info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
+    title = info.title or "this chat"
     mentions = f'<b>Admins in {title}:</b> \n'
     try:
         async for user in show.client.iter_participants(
@@ -515,9 +518,8 @@ async def get_admin(show):
     except MessageTooLongError:
         await show.edit(
             f"`{JAVES_NNAME}`: **Too many admins here. Uploading admin list as file**")
-        file = open("adminlist.txt", "w+")
-        file.write(mentions)
-        file.close()
+        with open("adminlist.txt", "w+") as file:
+            file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "adminlist.txt",
@@ -531,7 +533,7 @@ async def get_admin(show):
 async def get_admin(show):
     """ For .admins command, list all of the admins of the chat. """
     info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
+    title = info.title or "this chat"
     mentions = f'<b>Admins in {title}:</b> \n'
     try:
         async for user in show.client.iter_participants(
@@ -549,9 +551,8 @@ async def get_admin(show):
     except MessageTooLongError:
         await show.reply(
             f"`{JAVES_NNAME}`: **Too many admins here. Uploading admin list as file**")
-        file = open("adminlist.txt", "w+")
-        file.write(mentions)
-        file.close()
+        with open("adminlist.txt", "w+") as file:
+            file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "adminlist.txt",
@@ -567,7 +568,7 @@ async def get_admin(show):
 async def get_bots(show):
     """ For .bots command, list all of the bots of the chat. """
     info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
+    title = info.title or "this chat"
     mentions = f'<b>Bots in {title}:</b>\n'
     try:
         if isinstance(show.to_id, PeerChat):
@@ -589,9 +590,8 @@ async def get_bots(show):
     except MessageTooLongError:
         await show.edit(
             f"`{JAVES_NNAME}`: ** Too many bots here. Uploading bots list as file.**")
-        file = open("botlist.txt", "w+")
-        file.write(mentions)
-        file.close()
+        with open("botlist.txt", "w+") as file:
+            file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "botlist.txt",
@@ -604,7 +604,7 @@ async def get_bots(show):
 async def get_bots(show):
     """ For .bots command, list all of the bots of the chat. """
     info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
+    title = info.title or "this chat"
     mentions = f'<b>Bots in {title}:</b>\n'
     try:
         if isinstance(show.to_id, PeerChat):
@@ -626,9 +626,8 @@ async def get_bots(show):
     except MessageTooLongError:
         await show.reply(
             f"`{JAVES_NNAME}`: ** Too many bots here. Uploading bots list as file.**")
-        file = open("botlist.txt", "w+")
-        file.write(mentions)
-        file.close()
+        with open("botlist.txt", "w+") as file:
+            file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "botlist.txt",
@@ -652,7 +651,7 @@ async def get_bots(show):
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
     info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
+    title = info.title or "this chat"
     mentions = 'Users in {}: \n'.format(title)
     try:
         if not show.pattern_match.group(1):
@@ -676,9 +675,8 @@ async def get_users(show):
     except MessageTooLongError:
         await show.edit(
             f"`{JAVES_NNAME}`: ** This is a huge group. Uploading users lists as file.")
-        file = open("userslist.txt", "w+")
-        file.write(mentions)
-        file.close()
+        with open("userslist.txt", "w+") as file:
+            file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "userslist.txt",
@@ -692,7 +690,7 @@ async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(':', 1)
     extra = None
-    if event.reply_to_msg_id and not len(args) == 2:
+    if event.reply_to_msg_id and len(args) != 2:
         previous_message = await event.get_reply_message()
         user_obj = await event.client.get_entity(previous_message.from_id)
         extra = event.pattern_match.group(1)
@@ -742,7 +740,7 @@ async def get_user_from_id(user, event):
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
     info = await show.client.get_entity(show.chat_id)
-    title = info.title if info.title else "this chat"
+    title = info.title or "this chat"
     mentions = 'Users in {}: \n'.format(title)
     try:
         if not show.pattern_match.group(1):
@@ -766,9 +764,8 @@ async def get_users(show):
     except MessageTooLongError:
         await show.reply(
             f"`{JAVES_NNAME}`: ** This is a huge group. Uploading users lists as file.")
-        file = open("userslist.txt", "w+")
-        file.write(mentions)
-        file.close()
+        with open("userslist.txt", "w+") as file:
+            file.write(mentions)
         await show.client.send_file(
             show.chat_id,
             "userslist.txt",
@@ -782,7 +779,7 @@ async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(':', 1)
     extra = None
-    if event.reply_to_msg_id and not len(args) == 2:
+    if event.reply_to_msg_id and len(args) != 2:
         previous_message = await event.get_reply_message()
         user_obj = await event.client.get_entity(previous_message.from_id)
         extra = event.pattern_match.group(1)
@@ -967,10 +964,7 @@ async def filters_active(event):
     for filt in filters:
         if transact == "`There are no filters in this chat.`":
             transact = "Active filters in this chat:\n"
-            transact += "`{}`\n".format(filt.keyword)
-        else:
-            transact += "`{}`\n".format(filt.keyword)
-
+        transact += "`{}`\n".format(filt.keyword)
     await event.edit(transact)
 
 
@@ -987,10 +981,7 @@ async def filters_active(event):
     for filt in filters:
         if transact == "`There are no filters in this chat.`":
             transact = "Active filters in this chat:\n"
-            transact += "`{}`\n".format(filt.keyword)
-        else:
-            transact += "`{}`\n".format(filt.keyword)
-
+        transact += "`{}`\n".format(filt.keyword)
     await event.reply(transact)
 
 
@@ -1060,9 +1051,12 @@ async def fetch_info(chat, event):
         msg_info = None
         print("Exception:", e)
     # No chance for IndexError as it checks for msg_info.messages first
-    first_msg_valid = True if msg_info and msg_info.messages and msg_info.messages[0].id == 1 else False
+    first_msg_valid = bool(
+        msg_info and msg_info.messages and msg_info.messages[0].id == 1
+    )
+
     # Same for msg_info.users
-    creator_valid = True if first_msg_valid and msg_info.users else False
+    creator_valid = bool(first_msg_valid and msg_info.users)
     creator_id = msg_info.users[0].id if creator_valid else None
     creator_firstname = msg_info.users[0].first_name if creator_valid and msg_info.users[0].first_name is not None else "Deleted Account"
     creator_username = msg_info.users[0].username if creator_valid and msg_info.users[0].username is not None else None
@@ -1073,7 +1067,7 @@ async def fetch_info(chat, event):
     except Exception as e:
         dc_id = "Unknown"
         location = str(e)
-    
+
     #this is some spaghetti I need to change
     description = chat.full_chat.about
     members = chat.full_chat.participants_count if hasattr(chat.full_chat, "participants_count") else chat_obj_info.participants_count
@@ -1097,7 +1091,7 @@ async def fetch_info(chat, event):
     username = "@{}".format(username) if username else None
     creator_username = "@{}".format(creator_username) if creator_username else None
     #end of spaghetti block
-    
+
     if admins is None:
         # use this alternative way if chat.full_chat.admins_count is None, works even without being an admin
         try:
@@ -1107,7 +1101,7 @@ async def fetch_info(chat, event):
         except Exception as e:
             print("Exception:", e)
     if bots_list:
-        for bot in bots_list:
+        for _ in bots_list:
             bots += 1
 
     caption = "<b>CHAT INFO:</b>\n"
@@ -1160,7 +1154,6 @@ async def fetch_info(chat, event):
             caption += f", <code>{slowmode_time}s</code>\n\n"
         else:
             caption += "\n\n"
-    if not broadcast:
         caption += f"Supergroup: {supergroup}\n\n"
     if hasattr(chat_obj_info, "restricted"):
         caption += f"Restricted: {restricted}\n"
@@ -1243,9 +1236,12 @@ async def fetch_info(chat, event):
         msg_info = None
         print("Exception:", e)
     # No chance for IndexError as it checks for msg_info.messages first
-    first_msg_valid = True if msg_info and msg_info.messages and msg_info.messages[0].id == 1 else False
+    first_msg_valid = bool(
+        msg_info and msg_info.messages and msg_info.messages[0].id == 1
+    )
+
     # Same for msg_info.users
-    creator_valid = True if first_msg_valid and msg_info.users else False
+    creator_valid = bool(first_msg_valid and msg_info.users)
     creator_id = msg_info.users[0].id if creator_valid else None
     creator_firstname = msg_info.users[0].first_name if creator_valid and msg_info.users[0].first_name is not None else "Deleted Account"
     creator_username = msg_info.users[0].username if creator_valid and msg_info.users[0].username is not None else None
@@ -1256,7 +1252,7 @@ async def fetch_info(chat, event):
     except Exception as e:
         dc_id = "Unknown"
         location = str(e)
-    
+
     #this is some spaghetti I need to change
     description = chat.full_chat.about
     members = chat.full_chat.participants_count if hasattr(chat.full_chat, "participants_count") else chat_obj_info.participants_count
@@ -1280,7 +1276,7 @@ async def fetch_info(chat, event):
     username = "@{}".format(username) if username else None
     creator_username = "@{}".format(creator_username) if creator_username else None
     #end of spaghetti block
-    
+
     if admins is None:
         # use this alternative way if chat.full_chat.admins_count is None, works even without being an admin
         try:
@@ -1290,7 +1286,7 @@ async def fetch_info(chat, event):
         except Exception as e:
             print("Exception:", e)
     if bots_list:
-        for bot in bots_list:
+        for _ in bots_list:
             bots += 1
 
     caption = "<b>CHAT INFO:</b>\n"
@@ -1343,7 +1339,6 @@ async def fetch_info(chat, event):
             caption += f", <code>{slowmode_time}s</code>\n\n"
         else:
             caption += "\n\n"
-    if not broadcast:
         caption += f"Supergroup: {supergroup}\n\n"
     if hasattr(chat_obj_info, "restricted"):
         caption += f"Restricted: {restricted}\n"
@@ -1401,30 +1396,29 @@ async def _(event):
     to_add_users = event.pattern_match.group(1)
     if event.is_private:
         await event.edit(f"**{JAVES_NNAME}:** invite  users to a chat, not to a Private Message")
+    elif not event.is_channel and event.is_group:
+        # https://lonamiwebs.github.io/Telethon/methods/messages/add_chat_user.html
+        for user_id in to_add_users.split(" "):
+            try:
+                await event.client(functions.messages.AddChatUserRequest(
+                    chat_id=event.chat_id,
+                    user_id=user_id,
+                    fwd_limit=1000000
+                ))
+            except Exception as e:
+                await event.reply(str(e))
+        await event.edit(f"**{JAVES_NNAME}:** Invited Requesr sent Successfully")
     else:
-        if not event.is_channel and event.is_group:
-            # https://lonamiwebs.github.io/Telethon/methods/messages/add_chat_user.html
-            for user_id in to_add_users.split(" "):
-                try:
-                    await event.client(functions.messages.AddChatUserRequest(
-                        chat_id=event.chat_id,
-                        user_id=user_id,
-                        fwd_limit=1000000
-                    ))
-                except Exception as e:
-                    await event.reply(str(e))
-            await event.edit(f"**{JAVES_NNAME}:** Invited Requesr sent Successfully")
-        else:
-            # https://lonamiwebs.github.io/Telethon/methods/channels/invite_to_channel.html
-            for user_id in to_add_users.split(" "):
-                try:
-                    await event.client(functions.channels.InviteToChannelRequest(
-                        channel=event.chat_id,
-                        users=[user_id]
-                    ))
-                except Exception as e:
-                    await event.reply(str(e))
-            await event.edit(f"**{JAVES_NNAME}:** Invited Successfully")
+        # https://lonamiwebs.github.io/Telethon/methods/channels/invite_to_channel.html
+        for user_id in to_add_users.split(" "):
+            try:
+                await event.client(functions.channels.InviteToChannelRequest(
+                    channel=event.chat_id,
+                    users=[user_id]
+                ))
+            except Exception as e:
+                await event.reply(str(e))
+        await event.edit(f"**{JAVES_NNAME}:** Invited Successfully")
 
 @javes.on(rekcah05(pattern=f"invite(?: |$)(.*)", allow_sudo=True))
 async def _(event):
@@ -1445,7 +1439,6 @@ async def _(event):
                     ))
                 except Exception as e:
                     await event.reply(str(e))
-            await event.reply(f"**{JAVES_NNAME}:** Invite request sent telethon Successfully")
         else:
             # https://lonamiwebs.github.io/Telethon/methods/channels/invite_to_channel.html
             for user_id in to_add_users.split(" "):
@@ -1456,7 +1449,8 @@ async def _(event):
                     ))
                 except Exception as e:
                     await event.reply(str(e))
-            await event.reply(f"**{JAVES_NNAME}:** Invite request sent telethon Successfully")
+
+        await event.reply(f"**{JAVES_NNAME}:** Invite request sent telethon Successfully")
 
 
 

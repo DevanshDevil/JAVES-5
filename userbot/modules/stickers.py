@@ -254,7 +254,6 @@ async def kang(args):
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
     image = Image.open(photo)
-    maxsize = (512, 512)
     if (image.width and image.height) < 512:
         size1 = image.width
         size2 = image.height
@@ -271,6 +270,7 @@ async def resize_photo(photo):
         sizenew = (size1new, size2new)
         image = image.resize(sizenew)
     else:
+        maxsize = (512, 512)
         image.thumbnail(maxsize)
 
     return image
@@ -550,7 +550,6 @@ async def kang(args):
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
     image = Image.open(photo)
-    maxsize = (512, 512)
     if (image.width and image.height) < 512:
         size1 = image.width
         size2 = image.height
@@ -567,6 +566,7 @@ async def resize_photo(photo):
         sizenew = (size1new, size2new)
         image = image.resize(sizenew)
     else:
+        maxsize = (512, 512)
         image.thumbnail(maxsize)
 
     return image
@@ -666,12 +666,13 @@ async def sticklet(event):
     if not font_file_name:
         font_file_name = ""
     sticktext = event.pattern_match.group(2)
-    if not sticktext and event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        sticktext = reply_message.message
-    elif not sticktext:
-        await event.reply(f"`{JAVES_NNAME}`: **need something **")
-        return
+    if not sticktext:
+        if event.reply_to_msg_id:
+            reply_message = await event.get_reply_message()
+            sticktext = reply_message.message
+        else:
+            await event.reply(f"`{JAVES_NNAME}`: **need something **")
+            return
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
     # delete the userbot command,
@@ -731,12 +732,13 @@ async def sticklet(event):
     if not font_file_name:
         font_file_name = ""
     sticktext = event.pattern_match.group(2)
-    if not sticktext and event.reply_to_msg_id:
-        reply_message = await event.get_reply_message()
-        sticktext = reply_message.message
-    elif not sticktext:
-        await event.edit(f"`{JAVES_NNAME}`: **need something **")
-        return
+    if not sticktext:
+        if event.reply_to_msg_id:
+            reply_message = await event.get_reply_message()
+            sticktext = reply_message.message
+        else:
+            await event.edit(f"`{JAVES_NNAME}`: **need something **")
+            return
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
     # delete the userbot command,

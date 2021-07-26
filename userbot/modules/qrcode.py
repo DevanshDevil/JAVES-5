@@ -36,9 +36,6 @@ async def parseqr(qr_e):
         logger.info(t_response)
         await qr_e.edit("Failed to decode.")
         return
-        LOGS.info(e_response)
-        LOGS.info(t_response)
-        return await qr_e.edit("Failed to decode.")
     soup = BeautifulSoup(t_response, "html.parser")
     qr_contents = soup.find_all("pre")[0].text
     await qr_e.edit(qr_contents)
@@ -70,9 +67,6 @@ async def parseqr(qr_e):
         logger.info(t_response)
         await qr_e.reply("Failed to decode.")
         return
-        LOGS.info(e_response)
-        LOGS.info(t_response)
-        return await qr_e.reply("Failed to decode.")
     soup = BeautifulSoup(t_response, "html.parser")
     qr_contents = soup.find_all("pre")[0].text
     await qr_e.reply(qr_contents)
@@ -95,9 +89,7 @@ async def bq(event):
             m_list = None
             with open(downloaded_file_name, "rb") as fd:
                 m_list = fd.readlines()
-            message = ""
-            for m in m_list:
-                message += m.decode("UTF-8") + "\r\n"
+            message = "".join(m.decode("UTF-8") + "\r\n" for m in m_list)
             os.remove(downloaded_file_name)
         else:
             message = previous_message.message
@@ -137,9 +129,7 @@ async def bq(event):
             m_list = None
             with open(downloaded_file_name, "rb") as fd:
                 m_list = fd.readlines()
-            message = ""
-            for m in m_list:
-                message += m.decode("UTF-8") + "\r\n"
+            message = "".join(m.decode("UTF-8") + "\r\n" for m in m_list)
             os.remove(downloaded_file_name)
         else:
             message = previous_message.message
@@ -179,9 +169,7 @@ async def make_qr(makeqr):
             m_list = None
             with open(downloaded_file_name, "rb") as file:
                 m_list = file.readlines()
-            message = ""
-            for media in m_list:
-                message += media.decode("UTF-8") + "\r\n"
+            message = "".join(media.decode("UTF-8") + "\r\n" for media in m_list)
             os.remove(downloaded_file_name)
         else:
             message = previous_message.message
@@ -221,9 +209,7 @@ async def make_qr(makeqr):
             m_list = None
             with open(downloaded_file_name, "rb") as file:
                 m_list = file.readlines()
-            message = ""
-            for media in m_list:
-                message += media.decode("UTF-8") + "\r\n"
+            message = "".join(media.decode("UTF-8") + "\r\n" for media in m_list)
             os.remove(downloaded_file_name)
         else:
             message = previous_message.message

@@ -24,7 +24,7 @@ if Var.STRING_SESSION:
 else:
     session_name = "startup"
     bot = TelegramClient(session_name, Var.APP_ID, Var.API_HASH)
-    
+
 LOGS = getLogger(__name__)
 ENV = config.ENV
 API_KEY = config.API_KEY
@@ -208,7 +208,7 @@ if bool(ENV):
     LASTFM_USERNAME = os.environ.get("LASTFM_USERNAME", None)
     LASTFM_PASSWORD_PLAIN = os.environ.get("LASTFM_PASSWORD", None)
     LASTFM_PASS = pylast.md5(LASTFM_PASSWORD_PLAIN)
-    if not LASTFM_USERNAME == "None":
+    if LASTFM_USERNAME != "None":
         lastfm = pylast.LastFMNetwork(
             api_key=LASTFM_API,
             api_secret=LASTFM_SECRET,
@@ -231,7 +231,7 @@ else:
 
 
 
-    
+
 from userbot import ALIVE_NAME
 from userbot import DEFAULTUSER
 JAVES_MSG = (f"Javes ")
